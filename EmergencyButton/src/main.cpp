@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <base64.h>
 #include <ESP8266WiFi.h>
 
 #include "config.hpp"
@@ -75,11 +76,11 @@ byte sendEmail(const char *receiver, const char *subject, const char *body)
   if (!eRcv(client))
     return 0;
   Serial.println(F("--- Sending User base64"));
-  client.println(EMAIL_USER_BASE64);
+  client.println(base64::encode(EMAIL_SENDER));
   if (!eRcv(client))
     return 0;
   Serial.println(F("--- Sending Password base64"));
-  client.println(EMAIL_PASSWORD_BASE64);
+  client.println(base64::encode(EMAIL_PASSWORD));
   if (!eRcv(client))
     return 0;
   Serial.println(F("--- Sending From"));
