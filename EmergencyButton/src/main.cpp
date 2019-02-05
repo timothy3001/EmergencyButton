@@ -56,7 +56,7 @@ byte eRcv(WiFiClientSecure client)
 byte sendEmail(const char *receiver, const char *subject, const char *body)
 {
   WiFiClientSecure client;
-  if (client.connect(EMAIL_SERVER, EMAIL_PORT) == 1)
+  if (client.connect("smtp.gmail.com", 465) == 1)
     Serial.println(F("connected"));
   else
   {
