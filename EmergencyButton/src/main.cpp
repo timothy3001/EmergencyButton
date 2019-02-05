@@ -122,7 +122,6 @@ void setup()
   setupWifi();
 
   // Read battery level
-  float batteryLevel = 0.0;
   float batteryLevel = (analogRead(batteryPin) / (float)1024) * 4.2;
 
   // Start beep
