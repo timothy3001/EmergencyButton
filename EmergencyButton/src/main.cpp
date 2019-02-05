@@ -99,10 +99,11 @@ byte sendEmail(const char *receiver, const char *subject, const char *body)
   client.println(F("DATA"));
   if (!eRcv(client))
     return 0;
-
+  client.print("From: ");
+  client.println(EMAIL_SENDER);
   client.print("Subject: ");
-  client.print(subject);
-  client.print("\r\n");
+  client.println(subject);
+  client.print("\n");
   client.println(body);
   client.println(".");
   if (!eRcv(client))
@@ -122,7 +123,7 @@ void setup()
   setupWifi();
 
   // Read battery level
-  float batteryLevel = (analogRead(batteryPin) / (float)1024) * 4.2;
+  float batteryLevel = ((analogRead(batteryPin) / (float)1024) * 4.2) - 0.1;
 
   // Start beep
   pinMode(buzzerPin, OUTPUT);
@@ -130,6 +131,8 @@ void setup()
 
   // Sending e-mail
   String text = String(EMAIL_BODY_PREFIX) + String(batteryLevel);
+  Serial.print("Body: ");
+  Serial.println(text.c_str());
   if (sendEmail(EMAIL_RECEIVER, EMAIL_SUBJECT, text.c_str()))
   {
     Serial.println("Mail sent!");
