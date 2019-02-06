@@ -8,7 +8,10 @@ you could use it for any other case.
 The e-mail body contains the current voltage of the battery so you can easily
 monitor the battery status.
 
-**ATTENTION**: This is a **private project** and is just for temporary use.
+**DISCLAIMER**: This is a **private project** and I built it for my grandmother.
+It is only a temporary solution until a real emergency button will be delivered.
+Keep that in mind please and don't make me resposible in case it is not working
+for you or has any other kind of faults.
 
 ## Features
 
@@ -47,4 +50,4 @@ without damaging the board, you need to add a voltage divider on A0.
 
 You can connect a buzzer to pin D0. While sending the e-mail it will beep. As
 soon as the e-mail is sent, it will stop. In case the e-mail cannot be send, it
-will continue beeping, so at least someone may hear the beep.
+will continue beeping, so at least someone may hear the beeping.
