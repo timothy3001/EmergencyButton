@@ -23,8 +23,8 @@ for you or has any other kind of faults.
 ## Things you need
 
 - Wemos D1 mini (see 'Other ESP8266 variants' for more information)
-- LiPo or Li-Ion, single cell (Make sure it fits into the 3d printed case
-  though, the case's inner size is 5cm x 5cm)
+- LiPo or Li-Ion, single cell: I used a 720mAh LiPo (Make sure it fits into the
+  3d printed case though, the case's inner size is 5cm x 5cm)
 - 100k resistor
 - Another resistor (can be 100k as well)
 - Tactile push button (The standard ones you usually get in those Arduino kits)
