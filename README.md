@@ -19,7 +19,7 @@ monitor the battery status.
 
 ## Things you need
 
-- Wemod D1 mini (see 'Other ESP8266 variants' for more information)
+- Wemos D1 mini (see 'Other ESP8266 variants' for more information)
 - LiPo or Li-Ion, single cell (Make sure it fits into the 3d printed case
   though, the case's inner size is 5cm x 5cm)
 - 100k resistor
@@ -29,6 +29,12 @@ monitor the battery status.
 - Buzzer or LED (optional, see 'Buzzer')
 
 ## Electronics
+
+The circuit might not be 100% bullet proof but I'm not an electronics engineer,
+so please bear with me.
+
+The buzzer is not yet included but be careful: You need a mosfet or something
+else to drive the buzzer.
 
 ![Schematics](https://github.com/timothy3001/EmergencyButton/blob/master/Other/EmergencyButton.png?raw=true)
 
