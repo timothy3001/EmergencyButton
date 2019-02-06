@@ -1,9 +1,14 @@
 # EmergencyButton
 
-This is a simple button, that sends an e-mail when it's pressed. It is easy and
-quick to build and can be used by older people to send a notification in case
-they have had an accident (e.g. a fall on the ground). Alternatively you could
-use it for any other case.
+This is a simple button, that sends an e-mail when it's pressed. It can be built
+quickly and easily and is intended to be used by older and disabled people to
+send an emergency notification in case they have had an accident. Alternatively
+you could use it for any other case.
+
+The e-mail body contains the current voltage of the battery so you can easily
+monitor the battery status.
+
+**ATTENTION**: This is a **private project** and is just for temporary use.
 
 ## Features
 
@@ -21,11 +26,19 @@ use it for any other case.
 - Another resistor (can be 100k as well)
 - Tactile push button (The standard ones you usually get in those Arduino kits)
 - Cable
-- Buzzer or LED (optional)
+- Buzzer or LED (optional, see 'Buzzer')
 
 ## Electronics
+
+![Schematics](https://github.com/timothy3001/EmergencyButton/blob/master/Other/EmergencyButton.png?raw=true)
 
 ## Other ESP8266 variants
 
 You can use other ESP8266 variants as well but to be able to monitor the battery
 without damaging the board, you need to add a voltage divider on A0.
+
+## Buzzer
+
+You can connect a buzzer to pin D0. While sending the e-mail it will beep. As
+soon as the e-mail is sent, it will stop. In case the e-mail cannot be send, it
+will continue beeping, so at least someone may hear the beep.
