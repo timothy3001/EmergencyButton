@@ -54,7 +54,7 @@ byte eRcv(WiFiClientSecure client)
   return 1;
 }
 
-byte sendEmail(const char *receiver, const char *subject, const char *body)
+byte sendEmail(const char *receiver1, const char *receiver2, const char *receiver3, const char *subject, const char *body)
 {
   WiFiClientSecure client;
   if (client.connect("smtp.gmail.com", 465) == 1)
@@ -91,10 +91,28 @@ byte sendEmail(const char *receiver, const char *subject, const char *body)
     return 0;
   Serial.println(F("--- Sending To"));
   client.print("RCPT TO: <");
-  client.print(receiver);
+  client.print(receiver1);
   client.println(">");
   if (!eRcv(client))
     return 0;
+  if (strlen(receiver2) > 0)
+  {
+    Serial.println(F("--- Sending To"));
+    client.print("RCPT TO: <");
+    client.print(receiver2);
+    client.println(">");
+    if (!eRcv(client))
+      return 0;
+  }
+  if (strlen(receiver3) > 0)
+  {
+    Serial.println(F("--- Sending To"));
+    client.print("RCPT TO: <");
+    client.print(receiver3);
+    client.println(">");
+    if (!eRcv(client))
+      return 0;
+  }
   Serial.println(F("--- Sending DATA"));
   client.println(F("DATA"));
   if (!eRcv(client))
@@ -133,7 +151,7 @@ void setup()
   String text = String(EMAIL_BODY_PREFIX) + String(batteryLevel);
   Serial.print("Body: ");
   Serial.println(text.c_str());
-  if (sendEmail(EMAIL_RECEIVER, EMAIL_SUBJECT, text.c_str()))
+  if (sendEmail(EMAIL_RECEIVER_1, EMAIL_RECEIVER_2, EMAIL_RECEIVER_3, EMAIL_SUBJECT, text.c_str()))
   {
     Serial.println("Mail sent!");
 
