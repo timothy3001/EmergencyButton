@@ -141,14 +141,14 @@ void setup()
   setupWifi();
 
   // Read battery level
-  float batteryLevel = ((analogRead(batteryPin) / (float)1024) * 4.2) - 0.1;
-
+  float batteryLevelVolts = ((analogRead(batteryPin) / (float)1024) * 4.2) - 0.08;
+  float batteryLevelPercentage = ((batteryLevelVolts - 3.4) / (4.2 - 3.4)) * 100;
   // Start beep
   pinMode(buzzerPin, OUTPUT);
   digitalWrite(buzzerPin, HIGH);
 
   // Sending e-mail
-  String text = String(EMAIL_BODY_PREFIX) + String(batteryLevel);
+  String text = String(EMAIL_BODY_PREFIX) + String(batteryLevelPercentage) + String("% (") + String(batteryLevelVolts) + String("V)");
   Serial.print("Body: ");
   Serial.println(text.c_str());
   if (sendEmail(EMAIL_RECEIVER_1, EMAIL_RECEIVER_2, EMAIL_RECEIVER_3, EMAIL_SUBJECT, text.c_str()))
