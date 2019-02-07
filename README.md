@@ -1,18 +1,18 @@
 # EmergencyButton
 
 This is a simple button, that sends an e-mail when it's pressed. It can be built
-quickly and easily and is intended to be used by older and disabled people to
+quickly and easily and is intended to be used by older or disabled people to
 send an emergency notification in case they have had an accident at home.
 
-The e-mail body contains the current voltage of the battery so you can easily
-monitor the battery status.
+The e-mail body contains the current voltage of the battery so you can monitor
+the battery status.
 
 Of course this button could be easily repurposed.
 
 **DISCLAIMER**: This is a **private project** and I built it for my grandmother.
-It is only a temporary solution until a real emergency button will be delivered.
-Keep that in mind please and don't make me resposible in case it is not working
-for you or has any other kind of faults.
+It is only a temporary solution until the real emergency button will be
+delivered. Keep that in mind please and don't make me resposible in case it is
+not working for you or has any other kind of faults.
 
 ## Features
 
