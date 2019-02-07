@@ -2,11 +2,12 @@
 
 This is a simple button, that sends an e-mail when it's pressed. It can be built
 quickly and easily and is intended to be used by older and disabled people to
-send an emergency notification in case they have had an accident. Alternatively
-you could use it for any other case.
+send an emergency notification in case they have had an accident at home.
 
 The e-mail body contains the current voltage of the battery so you can easily
 monitor the battery status.
+
+Of course this button could be easily repurposed.
 
 **DISCLAIMER**: This is a **private project** and I built it for my grandmother.
 It is only a temporary solution until a real emergency button will be delivered.
@@ -29,6 +30,7 @@ for you or has any other kind of faults.
 - Another resistor (can be 100k as well)
 - Tactile push button (The standard ones you usually get in those Arduino kits)
 - Cable
+- 4x M3 20mm screws with sink head
 - Buzzer or LED (optional, see 'Buzzer')
 
 ## Electronics
