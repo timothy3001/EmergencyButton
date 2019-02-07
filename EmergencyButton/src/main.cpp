@@ -6,6 +6,42 @@
 
 const int buzzerPin = D0;
 const int batteryPin = A0;
+const int beepCycle = 500;
+
+int milliesBeepOn = 0;
+bool doBeeping = false;
+bool beepState = false;
+
+void turnBeepOn()
+{
+  doBeeping = true;
+  milliesBeepOn = millis();
+}
+
+void turnBeepOff()
+{
+  digitalWrite(buzzerPin, LOW);
+  doBeeping = false;
+  beepState = false;
+}
+
+void checkBeep()
+{
+  int cycleStatus = (millis() - milliesBeepOn) % beepCycle;
+  if (cycleStatus < beepCycle / 2 && !beepState)
+  {
+    if (doBeeping)
+    {
+      digitalWrite(buzzerPin, HIGH);
+      beepState = true;
+    }
+  }
+  else if (cycleStatus >= beepCycle / 2 && beepState)
+  {
+    digitalWrite(buzzerPin, LOW);
+    beepState = false;
+  }
+}
 
 void setupWifi()
 {
@@ -17,9 +53,10 @@ void setupWifi()
   while (WiFi.status() != WL_CONNECTED)
   {
     Serial.println(".");
-    delay(500);
+    delay(100);
 
     // If Wi-Fi is not available, the beep will continue which at least might be heard by people...
+    checkBeep();
   }
 
   Serial.println("\nConnected!");
@@ -138,14 +175,15 @@ void setup()
 {
   Serial.begin(115200);
 
-  setupWifi();
-
   // Read battery level
   float batteryLevelVolts = ((analogRead(batteryPin) / (float)1024) * 4.2) - 0.08;
   float batteryLevelPercentage = ((batteryLevelVolts - 3.4) / (4.2 - 3.4)) * 100;
+
   // Start beep
   pinMode(buzzerPin, OUTPUT);
-  digitalWrite(buzzerPin, HIGH);
+  turnBeepOn();
+
+  setupWifi();
 
   // Sending e-mail
   String text = String(EMAIL_BODY_PREFIX) + String(batteryLevelPercentage) + String("% (") + String(batteryLevelVolts) + String("V)");
@@ -156,7 +194,7 @@ void setup()
     Serial.println("Mail sent!");
 
     // Stop beep
-    digitalWrite(buzzerPin, LOW);
+    turnBeepOff();
 
     // Go to sleep
     ESP.deepSleep(0, WAKE_RF_DEFAULT);
@@ -172,4 +210,5 @@ void setup()
 void loop()
 {
   delay(1);
+  checkBeep();
 }
