@@ -43,6 +43,24 @@ void checkBeep()
   }
 }
 
+void checkTimer()
+{
+  if (millis() > 300000)
+  {
+    turnBeepOff();
+
+    // Go to sleep
+    ESP.deepSleep(0, WAKE_RF_DEFAULT);
+    delay(500);
+  }
+}
+
+void checkBeepAndTurnOffTimer()
+{
+  checkBeep();
+  checkTimer();
+}
+
 void setupWifi()
 {
   Serial.print("Connecting to ");
@@ -55,8 +73,8 @@ void setupWifi()
     Serial.println(".");
     delay(100);
 
-    // If Wi-Fi is not available, the beep will continue which at least might be heard by people...
-    checkBeep();
+    // If Wi-Fi is not available, the beep will continue for 5 minutes which at least might be heard by people...
+    checkBeepAndTurnOffTimer();
   }
 
   Serial.println("\nConnected!");
@@ -176,7 +194,7 @@ void setup()
   Serial.begin(115200);
 
   // Read battery level
-  float batteryLevelVolts = ((analogRead(batteryPin) / (float)1024) * 4.2) - 0.08;
+  float batteryLevelVolts = ((analogRead(batteryPin) / (float)1024) * 4.2);
   float batteryLevelPercentage = ((batteryLevelVolts - 3.4) / (4.2 - 3.4)) * 100;
 
   // Start beep
@@ -198,17 +216,18 @@ void setup()
 
     // Go to sleep
     ESP.deepSleep(0, WAKE_RF_DEFAULT);
+    delay(500);
   }
   else
   {
     Serial.println("Error!");
 
-    // If mail could not be sent, at least the beep continues which might be heard by people
+    // If mail could not be sent, at least the beep continues for 5 minutes which might be heard by people. It can be restarted easily by another button press.
   }
 }
 
 void loop()
 {
   delay(1);
-  checkBeep();
+  checkBeepAndTurnOffTimer();
 }
