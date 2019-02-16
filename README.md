@@ -23,6 +23,7 @@ not working for you or has any other kind of faults.
 
 ## Things you need
 
+Hardware:
 - Wemos D1 mini (see 'Other ESP8266 variants' for more information)
 - LiPo or Li-Ion, single cell: I used a 720mAh LiPo (Make sure it fits into the
   3d printed case though, the case's inner size is 5cm x 5cm)
@@ -32,6 +33,10 @@ not working for you or has any other kind of faults.
 - Cable
 - 4x M3 screws (20mm at least) with sink head
 - Buzzer or LED (optional, see 'Buzzer or LED')
+
+Software:
+- Microsoft Visual Studio Code
+- PlatformIO as VS Code extension
 
 ## Electronics
 
